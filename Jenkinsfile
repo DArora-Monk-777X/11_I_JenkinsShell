@@ -14,12 +14,12 @@ node {
                 sh 'ie-app-publisher-linux -h'
                 sh """
                    
-                    cd src
+                    cd app
                     docker-compose --host tcp://db:2375 build
                     docker --host tcp://db:2375 images
                     cd ..
                     echo "deploying app..."
-                    cp -RT src /app/src/workspace
+                    cp -RT app /app/src/workspace
                     cd /app/src/workspace
                     ie-app-publisher-linux de c -u http://db:2375
                     export IE_SKIP_CERTIFICATE=true
