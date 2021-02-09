@@ -1,7 +1,7 @@
 node {
     checkout scm
     withEnv(['HOME=.']) {
-        stage ('Upload') {
+        stage ('Build') {
              docker.image('docker:18.09-dind').withRun(""" --privileged  """) { c ->
              docker.withRegistry( '','credentials-id') {    
              docker.image('halamap/publisher-cli:0.0.3').inside(""" --link ${c.id}:docker --privileged -u root """) {
