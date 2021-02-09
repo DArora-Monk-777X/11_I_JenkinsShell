@@ -5,7 +5,11 @@ pipeline {
         stage('Upload') {
             steps {
                 echo 'Building..'
-                sh 'docker-compose --version'
+                sh '''
+                    cd app
+                    docker-compose build
+                '''
+                
                 echo 'Uploading ...'
                 sh '''
                     rm -rf workspace
