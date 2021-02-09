@@ -8,11 +8,11 @@ node {
 
                 sh """
                    
-                    cd src
+                    cd app
                     docker-compose --host tcp://docker:2375 build
                     docker --host tcp://docker:2375 images
                     cd ..
-                    cp -RT src /app/src/workspace
+                    cp -RT app /app/src/workspace
                     cd /app/src/workspace
                     ie-app-publisher-linux de c -u http://docker:2375
                     export IE_SKIP_CERTIFICATE=true
