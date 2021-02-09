@@ -2,20 +2,15 @@ pipeline {
     agent any
 
     stages {
-        stage('Deploy') {
+        stage('Upload') {
             steps {
                 echo 'Building..'
-                sh 'ie-app-publisher-linux --version'
-                sh 'docker --version'
                 sh 'docker-compose --version'
-                echo 'Deploy stage executing ...'
-          
+                echo 'Uploading ...'
                 sh '''
-                    ls
                     rm -rf workspace
                     mkdir workspace
                     cd workspace
-                    ls
                     ie-app-publisher-linux ws init
                     cd ..
                     cp -RT app ./workspace
@@ -32,3 +27,4 @@ pipeline {
       
     }
 }
+
