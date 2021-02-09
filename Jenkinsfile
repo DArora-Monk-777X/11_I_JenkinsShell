@@ -2,13 +2,18 @@ pipeline {
     agent any
 
     stages {
-        stage('Upload') {
+        
+        stage('Build') {
             steps {
                 echo 'Building..'
                 sh '''
                     cd app
                     docker-compose build
                 '''
+            }
+        }
+        stage('Upload') {
+            steps {
                 
                 echo 'Uploading ...'
                 sh '''
